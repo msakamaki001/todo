@@ -1,0 +1,100 @@
+.btn {
+  margin: 50px 0px;
+  padding: 8px 24px;
+  border:1px solid #5f5d60;
+  background-color: #2294d6;
+  display: inline-block;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.modal-wrapper {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+}
+.modal {
+  position: absolute;
+  top: 20%;
+  left: 34%;
+  background-color: #e6ecf0;
+  padding: 20px 0 40px;
+  border-radius: 10px;
+  width: 450px;
+  height: auto;
+  text-align: center;
+}
+#close-modal{
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: rgba(128, 128, 128, 0.46);
+  cursor: pointer;
+}
+.form {
+  width: 100%;
+}
+.form h2 {
+  color: #5f5d60;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+}
+.form input {
+  width: 320px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  padding: 12px 12px;
+  border: 1px solid #d0d5d8;
+  border-radius: 5px;
+}
+.form .todo-input {
+  width: 520px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  padding: 12px 12px;
+  border: 1px solid #d0d5d8;
+  border-radius: 5px;
+}
+.form .todo-btn {
+  width:200px;
+  margin: 50px 20px;
+  padding: 8px 24px;
+  border:1px solid #5f5d60;
+  background-color: #2294d6;
+  display: inline-block;
+  color: white;
+  cursor: pointer;
+}
+.todo-table {
+	width: 100%;
+}
+.todo-id {
+	width:10%;
+	text-align: center;	
+}
+.todo-th {
+	width:45%;
+	text-align: center;
+}
+.todo-td {
+	width: 45%;
+	text-align: center;
+}
+.submit-btn {
+  display: inline-block;
+  padding: 14px 140px;
+  background-color: #2294d6;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  margin: 10px auto;
+  cursor: pointer;
+}
+#error {
+	color: red;
+}

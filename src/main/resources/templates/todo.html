@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>ToDo一覧</title>
+<link href="/css/todo.css" rel="stylesheet"></link>
+<meta charset="utf-8" />
+</head>
+<body>
+    <h1>ToDo一覧</h1>
+    <table>
+        <tr th:if="${validationError}" th:each="error : ${validationError}">
+            <td style="color: red;" th:text="${error}"></td>
+        </tr>
+    </table>
+    <form class="form" th:action="@{/entry}" method="POST" th:object="${data}"> 
+		<input class="todo-input" type="text" name="content" placeholder="ToDo入力" />
+		<input class="todo-btn" type="submit" value="登録" />
+	</form>
+	<div th:if="${size == 0}">
+		ToDoはまだありません。
+	</div>
+	<div th:if="${size > 0}">
+    <table class="todo-table">
+        <thead>
+            <tr>
+                <th class="todo-id">ID</th>
+                <th class="todo-th">内容</th>
+                <th class="todo-th">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="todo : ${todolist}" th:object="${todo}">
+                <td class="todo-id" th:text="*{id}"></td>
+                <td class="todo-td content" th:text="*{content}"></td>
+                <td class="todo-td">
+					<p class="content-show btn" th:data-id="*{id}" th:data-content="*{content}">変更</p>
+					<p class="btn delete" th:data-id="*{id}">削除</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <div class="modal-wrapper" id="content-modal">
+    <div class="modal">
+      <div id="close-modal">×</div>
+      <div class="form">
+        <h2>ToDo変更</h2>
+        <div id="error"></div>
+        <form th:action="@{/update}" method="POST">  
+		  <input class="form-control-id" type="hidden" name="id" value=""/>
+          <input class="form-control" type="text" name="content" placeholder="ToDo内容"/>
+          <input type="submit" class="submit-btn" value="変更">
+        </form>
+      </div>
+    </div>
+  </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script>
+		$(function() {
+		  $('.content-show').click(function() {
+		    $('#content-modal').fadeIn();
+		    $('.form-control').val($(this).data('content'));
+		    $('.form-control-id').val($(this).data('id'));
+		  });
+		  $('#close-modal').click(function() {
+		    $('#content-modal').fadeOut();
+		  });
+		  $('.delete').click(function() {
+			  let id = $(this).data('id');
+			  if (confirm('削除しますか？')) {
+			  	location.href = '/delete?id='+id;
+			  } else {
+				return false;
+			  }
+		  });
+		  $('.submit-btn').click(function(e) {
+			let content = $('.form-control').val();
+		  	if (content === null || content === ''){
+				$('#error').append("<p>ToDoを入力してください</p>");
+				return false;	  
+			}	  
+		  });
+		  
+		});
+	</script>
+</body>
+</html>
